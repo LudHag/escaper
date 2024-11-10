@@ -13,3 +13,12 @@ export const loadAllFormated = (): UnEscapedText[] => {
     value: localStorage.getItem(key) || "",
   }));
 };
+
+export const removeHistory = () => {
+  const keys = Object.keys(localStorage).filter((key) =>
+    key.startsWith("history-")
+  );
+  keys.forEach((key) => {
+    localStorage.removeItem(key);
+  });
+};

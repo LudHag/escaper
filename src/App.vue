@@ -6,6 +6,7 @@
         <a href="#" @click.prevent="generated = item.value">{{ item.date }}</a>
       </li>
     </ul>
+    <Button severity="danger" label="Delete history" @click="deleteHistory" />
   </Drawer>
   <form v-if="!generated" @submit.prevent="onSubmit">
     <div class="flex flex-col gap-1">
@@ -31,7 +32,11 @@ import { computed, onMounted, ref } from "vue";
 import { unEscapeJson } from "./utils/unescaper";
 import { formatJson } from "./utils/formater";
 import { UnEscapedText } from "./models";
-import { loadAllFormated, saveFormated } from "./utils/historymethods";
+import {
+  loadAllFormated,
+  removeHistory,
+  saveFormated,
+} from "./utils/historymethods";
 
 const text = ref<string>("");
 const generated = ref<string | null>(null);
@@ -59,6 +64,11 @@ const orderedHistory = computed(() =>
 const clear = () => {
   generated.value = null;
   text.value = "";
+};
+
+const deleteHistory = () => {
+  removeHistory();
+  history.value = [];
 };
 
 onMounted(() => {
