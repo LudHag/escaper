@@ -17,7 +17,7 @@
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import { ref } from "vue";
-import { unEscapeJson } from "./utils/escaper";
+import { unEscapeJson } from "./utils/unescaper";
 import { formatJson } from "./utils/formater";
 
 const text = ref<string>("");
